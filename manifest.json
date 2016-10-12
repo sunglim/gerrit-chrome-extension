@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+
+  "name": "Gerritimium",
+  "description": "Gerrit monitoring",
+  "version": "0.1",
+
+  "permissions": [
+    "alarms",
+    "storage",
+    "tabs",
+    "webNavigation",
+    "http://*/*", "https://*/*"
+  ],
+
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_popup": "contents/popup.html"
+  },
+
+  "background": {
+    "scripts": [
+      "contents/first_run.js",
+      "contents/background.js",
+      "contents/gerrit_api.js"
+    ],
+    "persistent": false
+  },
+
+  "options_ui": {
+    "page": "contents/options.html",
+    "chrome_style": true
+  }
+}
