@@ -10,6 +10,7 @@
     "storage",
     "tabs",
     "webNavigation",
+	"notifications",
     "http://*/*", "https://*/*"
   ],
 
