@@ -16,7 +16,8 @@ GerritQuery.prototype = {
 
       // |api_endpoint| would be a gerrit url like a https://gpro.lgsvl.com/
       var api_endpoint = localStorage["api_endpoint"];
-      xhr.open("GET", api_endpoint + '/changes/?q=' + query);
+	  console.log(api_endpoint + '/changes/?o=MESSAGES&q=' + query);
+      xhr.open("GET", api_endpoint + '/changes/?o=MESSAGES&q=' + query);
       xhr.send();
       // call to reject() is ignored once resolve() has been invoked
       xhr.onload = function() {
