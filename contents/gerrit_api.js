@@ -31,5 +31,27 @@ GerritQuery.prototype = {
         reject(new Error("Network error"));
       }
     });
+  },
+  getChange: function(change_id) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest();
+
+      // |api_endpoint| would be a gerrit url like a https://gpro.lgsvl.com/
+      var api_endpoint = localStorage["api_endpoint"];
+	  console.log(api_endpoint + '/changes/' + change_id);
+      xhr.open("GET", api_endpoint + '/changes/' + change_id);
+      xhr.send();
+      // call to reject() is ignored once resolve() has been invoked
+      xhr.onload = function() {
+        try {
+          resolve(JSON.parse(xhr.responseText.substr(5)));
+        } catch (e) {
+          reject(new TypeError(e.message));
+        }
+      }
+      xhr.onloadend = function() {
+        reject(new Error("Network error"));
+      }
+    });
   }
 };
