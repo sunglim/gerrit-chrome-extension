@@ -70,10 +70,10 @@ chrome.runtime.onSuspendCanceled.addListener(function() {
 function getMessagesById(full_output, id) {
 	var messages = [];
 	full_output.forEach(function(item) {
-		if (item._number === id) {
+		if (item.id === id) {
 			messages = item.messages;
 		}
-		return item._number === id;
+		return item.id === id;
 	});
 	return messages;
 }
@@ -90,13 +90,13 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     if (key === "changes") {
       updateIcon(storageChange.newValue);
 	  var new_id_list = [];
-	  // Uses _number instead of id. to find url for that change.
+
 	  storageChange.newValue.forEach(function(item) {
-		  new_id_list.push(item._number);
+		  new_id_list.push(item.id);
 	  });
 	  var old_id_list = [];
 	  storageChange.oldValue.forEach(function(item) {
-		  old_id_list.push(item._number);
+		  old_id_list.push(item.id);
 	  });
 	  var intersect_list = intersect(new_id_list, old_id_list);
 	  intersect_list.forEach(function(item) {
@@ -106,7 +106,16 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 		 
 		 for (j = 1; j <= diff_size; j++) {
 			var new_msg = new_messages[old_messages.length + j - 1].message;
-			chrome.notifications.create(item.toString(), {title: "New Message", iconUrl: './images/icon.png', message: new_msg, type:  'basic'});
+			  var gerrit_instance = new GerritQuery();
+			  gerrit_instance.getChangeList(item.toString())
+				.then(function(result) {
+					if (result.length == 1) {
+						new_msg = new_msg.replace(/(\n\n)/gm,"\n");
+						chrome.notifications.create(result[0]._number.toString(), {title: result[0].subject, iconUrl: './images/icon.png', message: new_msg, type:  'basic', eventTime: Date.now() + 2000});
+					}
+				}, function(e) {
+				  console.log("failed to fetch changes:", e.message);
+				});
 		 }
 	  });
     }
