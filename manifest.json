@@ -3,14 +3,14 @@
 
   "name": "Gerritimium",
   "description": "Gerrit monitoring",
-  "version": "1.4",
+  "version": "1.5",
 
   "permissions": [
     "alarms",
+    "notifications",
     "storage",
     "tabs",
     "webNavigation",
-	"notifications",
     "http://*/*", "https://*/*"
   ],
 
