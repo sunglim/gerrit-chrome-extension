@@ -1,0 +1,48 @@
+body {
+  background-color: white;
+  direction: ltr;
+  margin: 0;
+  padding: 10px;
+}
+
+textarea {
+  -webkit-padding-start: 4px;
+  margin-top: 2px;
+  width: 100%;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: solid 1px rgb(204, 204, 204);
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+
+fieldset legend {
+  color: rgb(0, 51, 102);
+}
+
+.setting {
+  margin: 2px 0;
+}
+
+.sub-setting {
+  -webkit-margin-start: 10px;
+  margin-top: 5px;
+}
+
+.buttons {
+  -webkit-margin-end: 0;
+  -webkit-margin-start: 20px;
+  margin-bottom: 1px;
+  margin-top: 2px;
+  text-align: end;
+}
+
+#error {
+  color: red;
+  margin: 5px 0;
+}

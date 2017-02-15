@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
+<head>
+ <link rel="stylesheet" type="text/css" href="options.css">
+</head>
 <body>
-  api_endpoint:
-  <input id="api_endpoint">
-  <br>
-  <div id="status"></div>
-  <button id="save">Save</button>
+  <div class="setting">
+    api_endpoint:
+    <textarea id="api_endpoint" width="400px"></textarea>
+    <br>
+    Duration(sec): <input id="duration" />
+
+    <div id="status">&nbsp;</div>
+
+    <div class="buttons">
+      <button id="save">Save</button>
+    </div>
+  </div>
+
   <script src="options.js"></script>
 </body>
 </html>

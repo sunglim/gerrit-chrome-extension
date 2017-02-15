@@ -6,6 +6,6 @@ chrome.runtime.onInstalled.addListener(function(details) {
   });
 
   fetchChanges();
-  chrome.alarms.create('refresh', {periodInMinutes: 1});
+  chrome.alarms.create('refresh', {periodInMinutes: 0.2});
   chrome.browserAction.setBadgeBackgroundColor({color: "#000"});
 });

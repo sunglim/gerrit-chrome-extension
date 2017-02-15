@@ -22,8 +22,8 @@ function fetchChanges(update_id) {
   var gerrit_instance = new GerritQuery();
   gerrit_instance.getChangeList(query)
     .then(function(result) {
-	  chrome.storage.local.set({ 'changes': result });
-	  
+      chrome.storage.local.set({ 'changes': result });
+
       if (update_id !== undefined) {
         // update timestamp/read state
         var nike = result.filter(function(o){ return o._number === update_id });
@@ -68,14 +68,14 @@ chrome.runtime.onSuspendCanceled.addListener(function() {
 });
 
 function getMessagesById(full_output, id) {
-	var messages = [];
-	full_output.forEach(function(item) {
-		if (item.id === id) {
-			messages = item.messages;
-		}
-		return item.id === id;
-	});
-	return messages;
+  var messages = [];
+  full_output.forEach(function(item) {
+    if (item.id === id) {
+      messages = item.messages;
+    }
+    return item.id === id;
+  });
+  return messages;
 }
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
@@ -89,42 +89,46 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
       storageChange.newValue);
     if (key === "changes") {
       updateIcon(storageChange.newValue);
-	  var new_id_list = [];
+      var new_id_list = [];
 
-	  storageChange.newValue.forEach(function(item) {
-		  new_id_list.push(item.id);
-	  });
-	  var old_id_list = [];
-	  storageChange.oldValue.forEach(function(item) {
-		  old_id_list.push(item.id);
-	  });
-	  var intersect_list = intersect(new_id_list, old_id_list);
-	  intersect_list.forEach(function(item) {
-		 var new_messages = getMessagesById(storageChange.newValue, item);
-		 var old_messages = getMessagesById(storageChange.oldValue, item);
-		 var diff_size = (new_messages.length - old_messages.length);
-		 
-		 for (j = 1; j <= diff_size; j++) {
-			var new_msg = new_messages[old_messages.length + j - 1].message;
-			  var gerrit_instance = new GerritQuery();
-			  gerrit_instance.getChangeList(item.toString())
-				.then(function(result) {
-					if (result.length == 1) {
-						new_msg = new_msg.replace(/(\n\n)/gm,"\n");
-						chrome.notifications.create(result[0]._number.toString(), {title: result[0].subject, iconUrl: './images/icon.png', message: new_msg, type:  'basic', eventTime: Date.now() + 2000});
-					}
-				}, function(e) {
-				  console.log("failed to fetch changes:", e.message);
-				});
-		 }
-	  });
+      storageChange.newValue.forEach(function(item) {
+        new_id_list.push(item.id);
+      });
+      var old_id_list = [];
+      storageChange.oldValue.forEach(function(item) {
+        old_id_list.push(item.id);
+      });
+      var intersect_list = intersect(new_id_list, old_id_list);
+      intersect_list.forEach(function(item) {
+        var new_messages = getMessagesById(storageChange.newValue, item);
+        var old_messages = getMessagesById(storageChange.oldValue, item);
+        var diff_size = (new_messages.length - old_messages.length);
+
+        for (j = 1; j <= diff_size; j++) {
+          var new_msg = new_messages[old_messages.length + j - 1].message;
+          var gerrit_instance = new GerritQuery();
+          gerrit_instance.getChangeList(item.toString())
+            .then(function(result) {
+              if (result.length == 1) {
+                new_msg = new_msg.replace(/(\n\n)/gm,"\n");
+                var duration_ms = localStorage["duration"]
+                  if (duration_ms === null)
+                    duration_ms = 3;
+                duration_ms = duration_ms * 1000;
+                chrome.notifications.create(result[0]._number.toString(), {title: result[0].subject, iconUrl: './images/icon.png', message: new_msg, type:  'basic', eventTime: Date.now() + duration_ms});
+              }
+            }, function(e) {
+              console.log("failed to fetch changes:", e.message);
+            });
+        }
+      });
     }
   }
 });
 
 chrome.notifications.onClicked.addListener(function(id) {
-	var BASE_URL = localStorage["api_endpoint"];
-    chrome.tabs.create({url: BASE_URL + "/" + id});
+  var BASE_URL = localStorage["api_endpoint"];
+  chrome.tabs.create({url: BASE_URL + "/" + id});
 });
 
 chrome.webNavigation.onReferenceFragmentUpdated.addListener(onNavigate, {
