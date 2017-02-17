@@ -127,6 +127,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 chrome.notifications.onClicked.addListener(function(id) {
+  chrome.notifications.clear(id);
   var BASE_URL = localStorage["api_endpoint"];
   chrome.tabs.create({url: BASE_URL + "/" + id});
 });
