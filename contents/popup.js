@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function makeDD(change) {
   var dd = document.createElement('dd');
-  dd.title = JSON.stringify(change, null, "  ");
+  // Do not show in production.
+  //dd.title = JSON.stringify(change, null, "  ");
   dd.textContent = change.subject;
   if (change.read)
     dd.className = "read";
@@ -21,7 +22,6 @@ function drawUi(items) {
 
     try {
       change.read =
-        // items.timestamps[change._number is the time I clicked.
         new Date(items.timestamps[change._number]) >= new Date(change.updated);
     } catch (e) {
     }

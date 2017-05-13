@@ -8,15 +8,11 @@ function GerritQuery() {}
 
 GerritQuery.prototype = {
   getChangeList: function(query) {
-    // is:open+reviewer:self+owner:self
-    console.log("Query:", query);
-
     return new Promise(function(resolve, reject) {
       var xhr = new XMLHttpRequest();
 
       // |api_endpoint| would be a gerrit url like a https://gpro.lgsvl.com/
       var api_endpoint = localStorage["api_endpoint"];
-	  console.log(api_endpoint + '/changes/?o=MESSAGES&q=' + query);
       xhr.open("GET", api_endpoint + '/changes/?o=MESSAGES&q=' + query);
       xhr.send();
       // call to reject() is ignored once resolve() has been invoked
@@ -38,7 +34,6 @@ GerritQuery.prototype = {
 
       // |api_endpoint| would be a gerrit url like a https://gpro.lgsvl.com/
       var api_endpoint = localStorage["api_endpoint"];
-	  console.log(api_endpoint + '/changes/' + change_id);
       xhr.open("GET", api_endpoint + '/changes/' + change_id);
       xhr.send();
       // call to reject() is ignored once resolve() has been invoked
