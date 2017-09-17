@@ -8,10 +8,21 @@
     api_endpoint:
     <textarea id="api_endpoint" width="400px"></textarea>
     <br>
-    Duration(sec): <input id="duration" />
-
+    Sets the period of time the notification remains visible.<br>
+	Duration(sec): <input id="duration" />
+    
     <div id="status">&nbsp;</div>
 
+	<fieldset>
+	  <legend>Notification filter:</legend>
+	  Do not show notification popup for the users down below<br>
+	  <input type="checkbox" id="user_automatic_performance">AutomaticPerformanceReview<br>
+	  <input type="checkbox" id="build_linux_all">BuildLinux*<br>
+	  <input type="checkbox" id="build_windows_all">BuildWindows*<br>
+	  <input type="checkbox" id="checkbot">CheckBot<br>
+	  <input type="checkbox" id="trex_service">TrexService<br>
+	  <input type="checkbox" id="merge_summary">MergeSummary<br>
+	</fieldset>
     <div class="buttons">
       <button id="save">Save</button>
     </div>

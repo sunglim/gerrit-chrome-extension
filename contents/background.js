@@ -110,6 +110,14 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
           gerrit_instance.getChangeList(item.toString())
             .then(function(result) {
               if (result.length == 1) {
+				var account_id = result[0].owner._account_id;
+				if (localStorage["checkbot"] == "true" && account_id == 2254) // Checkbot
+					return;
+				if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy
+					return;
+				if (localStorage["build_windows_all"] == "true" && account_id == 3311)  // BuildWIndowsVC2015HappyDbg
+					return;
+
                 new_msg = new_msg.replace(/(\n\n)/gm,"\n");
                 var duration_ms = localStorage["duration"]
                   if (duration_ms === null)

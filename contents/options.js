@@ -3,6 +3,15 @@ function save_options() {
   try {
     localStorage["api_endpoint"] = document.getElementById("api_endpoint").value.replace(/\/*$/, '');
     localStorage["duration"] = document.getElementById("duration").value;
+	localStorage["user_automatic_perforamnce"] = document.getElementById("user_automatic_performance").checked;
+	console.log("save");
+	console.log(localStorage["user_automatic_perforamnce"]);
+	localStorage["build_linux_all"] = document.getElementById("build_linux_all").checked;
+	localStorage["build_windows_all"] = document.getElementById("build_windows_all").checked;
+	localStorage["checkbot"] = document.getElementById("checkbot").checked;
+	localStorage["trex_service"] = document.getElementById("trex_service").checked;
+	localStorage["merge_summary"] = document.getElementById("merge_summary").checked;
+	
     chrome.runtime.reload();
   } catch (e) {
   }
@@ -14,7 +23,47 @@ function restore_options() {
   var duration = localStorage["duration"];
   if (duration === undefined)
     localStorage["duration"] = 8;
+  
+  var api_endpoint = localStorage["api_endpoint"];
+  if (api_endpoint == undefined)
+	  localStorage["api_endpoint"] = "https://hdbgerrit.wdf.sap.corp:8443";
+
   document.getElementById("duration").value = localStorage["duration"];
+  
+  var user_automatic_perforamnce = localStorage["user_automatic_perforamnce"];
+  if (user_automatic_perforamnce == undefined)
+	  localStorage["user_automatic_perforamnce"] = true;
+  else {
+	  console.log("not undefined");
+	  console.log(user_automatic_perforamnce);
+  }
+  
+  var build_linux_all = localStorage["build_linux_all"];
+  if (build_linux_all == undefined)
+	  localStorage["build_linux_all"] = true;
+  
+  var build_windows_all = localStorage["build_windows_all"];
+  if (build_windows_all === undefined)
+	  localStorage["build_windows_all"] = true;
+
+  var checkbot = localStorage["checkbot"];
+  if (checkbot === undefined)
+	  localStorage["checkbot"] = true;
+
+  var trex_service = localStorage["trex_service"];
+  if (trex_service === undefined)
+	  localStorage["trex_service"] = true;
+
+  var merge_summary = localStorage["merge_summary"];
+  if (merge_summary === undefined)
+	  localStorage["merge_summary"] = true;
+  
+  document.getElementById("user_automatic_performance").checked = localStorage["user_automatic_perforamnce"] == "true";
+  document.getElementById("build_linux_all").checked = localStorage["build_linux_all"] == "true";
+  document.getElementById("build_windows_all").checked = localStorage["build_windows_all"] == "true";
+  document.getElementById("checkbot").checked = localStorage["checkbot"] == "true";
+  document.getElementById("trex_service").checked = localStorage["trex_service"] == "true";
+  document.getElementById("merge_summary").checked = localStorage["merge_summary"] == "true";
 }
 
 document.addEventListener('DOMContentLoaded', restore_options);
