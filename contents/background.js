@@ -113,7 +113,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
               if (result.length == 1) {
 				if (localStorage["checkbot"] == "true" && account_id == 2254) // Checkbot
 					return;
-				if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy
+				if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy
 					return;
 				if (localStorage["build_windows_all"] == "true" && account_id == 3311)  // BuildWIndowsVC2015HappyDbg
 					return;
