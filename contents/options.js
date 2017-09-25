@@ -4,9 +4,8 @@ function save_options() {
     localStorage["api_endpoint"] = document.getElementById("api_endpoint").value.replace(/\/*$/, '');
     localStorage["duration"] = document.getElementById("duration").value;
 	localStorage["user_automatic_perforamnce"] = document.getElementById("user_automatic_performance").checked;
-	console.log("save");
-	console.log(localStorage["user_automatic_perforamnce"]);
 	localStorage["build_linux_all"] = document.getElementById("build_linux_all").checked;
+	localStorage["build_sun_all"] = document.getElementById("build_sun_all").checked;
 	localStorage["build_windows_all"] = document.getElementById("build_windows_all").checked;
 	localStorage["checkbot"] = document.getElementById("checkbot").checked;
 	localStorage["trex_service"] = document.getElementById("trex_service").checked;
@@ -25,9 +24,10 @@ function restore_options() {
     localStorage["duration"] = 8;
   
   var api_endpoint = localStorage["api_endpoint"];
-  if (api_endpoint == undefined)
-	  localStorage["api_endpoint"] = "https://hdbgerrit.wdf.sap.corp:8443";
-
+  if (api_endpoint == undefined || api_endpoint == "undefined")
+	  localStorage["api_endpoint"] = "https://hdbgerrit.wdf.sap.corp:8443/";
+  document.getElementById('api_endpoint').value = localStorage["api_endpoint"];
+  
   document.getElementById("duration").value = localStorage["duration"];
   
   var user_automatic_perforamnce = localStorage["user_automatic_perforamnce"];
@@ -41,6 +41,10 @@ function restore_options() {
   var build_linux_all = localStorage["build_linux_all"];
   if (build_linux_all == undefined)
 	  localStorage["build_linux_all"] = true;
+  
+  var build_sun_all = localStorage["build_sun_all"];
+  if (build_sun_all == undefined)
+	  localStorage["build_sun_all"] = true;
   
   var build_windows_all = localStorage["build_windows_all"];
   if (build_windows_all === undefined)
@@ -60,6 +64,7 @@ function restore_options() {
   
   document.getElementById("user_automatic_performance").checked = localStorage["user_automatic_perforamnce"] == "true";
   document.getElementById("build_linux_all").checked = localStorage["build_linux_all"] == "true";
+  document.getElementById("build_sun_all").checked = localStorage["build_sun_all"] == "true";
   document.getElementById("build_windows_all").checked = localStorage["build_windows_all"] == "true";
   document.getElementById("checkbot").checked = localStorage["checkbot"] == "true";
   document.getElementById("trex_service").checked = localStorage["trex_service"] == "true";
