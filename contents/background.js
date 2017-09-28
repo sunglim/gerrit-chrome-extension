@@ -107,21 +107,21 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         for (j = 1; j <= diff_size; j++) {
           var new_msg = new_messages[old_messages.length + j - 1].message;
           var gerrit_instance = new GerritQuery();
-		  var account_id = new_messages[old_messages.length + j - 1].author._account_id;
+          var account_id = new_messages[old_messages.length + j - 1].author._account_id;
           gerrit_instance.getChangeList(item.toString())
             .then(function(result) {
               if (result.length == 1) {
-				if (localStorage["checkbot"] == "true" && account_id == 2254) // Checkbot
-					return;
-				if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076 || account_id == 1203 || account_id == 2813))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy, BuildLinuxRel, Linux32Rel
-					return;
-				if (localStorage["build_sun_all"] == "true" && (account_id == 3689 || account_id == 3691))  // Sun64Rel
-					return;
-				if (localStorage["build_windows_all"] == "true" && (account_id == 3311|| account_id == 439 || account_id == 337 || account_id == 2809))  // BuildWIndowsVC2015HappyDbg, BuildWindowsDbg, BuildWindows, BuildWindows32Rel
-					return;
-				if (localStorage["build_mac_all"] == "true" && account_id == 2546)
-					return;
-				
+                if (localStorage["checkbot"] == "true" && account_id == 2254) // Checkbot
+                  return;
+                if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076 || account_id == 1203 || account_id == 2813))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy, BuildLinuxRel, Linux32Rel
+                  return;
+                if (localStorage["build_sun_all"] == "true" && (account_id == 3689 || account_id == 3691))  // Sun64Rel
+                  return;
+                if (localStorage["build_windows_all"] == "true" && (account_id == 3311|| account_id == 439 || account_id == 337 || account_id == 2809))  // BuildWIndowsVC2015HappyDbg, BuildWindowsDbg, BuildWindows, BuildWindows32Rel
+                  return;
+                if (localStorage["build_mac_all"] == "true" && account_id == 2546)
+                  return;
+
                 new_msg = new_msg.replace(/(\n\n)/gm,"\n");
                 var duration_ms = localStorage["duration"]
                   if (duration_ms === null)
