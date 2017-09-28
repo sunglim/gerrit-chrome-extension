@@ -6,6 +6,7 @@ function save_options() {
 	localStorage["user_automatic_perforamnce"] = document.getElementById("user_automatic_performance").checked;
 	localStorage["build_linux_all"] = document.getElementById("build_linux_all").checked;
 	localStorage["build_sun_all"] = document.getElementById("build_sun_all").checked;
+	localStorage["build_mac_all"] = document.getElementById("build_mac_all").checked;
 	localStorage["build_windows_all"] = document.getElementById("build_windows_all").checked;
 	localStorage["checkbot"] = document.getElementById("checkbot").checked;
 	localStorage["trex_service"] = document.getElementById("trex_service").checked;
@@ -45,6 +46,10 @@ function restore_options() {
   var build_sun_all = localStorage["build_sun_all"];
   if (build_sun_all == undefined)
 	  localStorage["build_sun_all"] = true;
+
+  var build_mac_all = localStorage["build_mac_all"];
+  if (build_mac_all == undefined)
+	  localStorage["build_mac_all"] = true;
   
   var build_windows_all = localStorage["build_windows_all"];
   if (build_windows_all === undefined)
@@ -66,6 +71,7 @@ function restore_options() {
   document.getElementById("build_linux_all").checked = localStorage["build_linux_all"] == "true";
   document.getElementById("build_sun_all").checked = localStorage["build_sun_all"] == "true";
   document.getElementById("build_windows_all").checked = localStorage["build_windows_all"] == "true";
+  document.getElementById("build_mac_all").checked = localStorage["build_mac_all"] == "true";
   document.getElementById("checkbot").checked = localStorage["checkbot"] == "true";
   document.getElementById("trex_service").checked = localStorage["trex_service"] == "true";
   document.getElementById("merge_summary").checked = localStorage["merge_summary"] == "true";

@@ -117,9 +117,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 					return;
 				if (localStorage["build_sun_all"] == "true" && (account_id == 3689 || account_id == 3691))  // Sun64Rel
 					return;
-				if (localStorage["build_windows_all"] == "true" && account_id == 3311)  // BuildWIndowsVC2015HappyDbg
+				if (localStorage["build_windows_all"] == "true" && (account_id == 3311|| account_id == 439 || account_id == 337 || account_id == 2809))  // BuildWIndowsVC2015HappyDbg, BuildWindowsDbg, BuildWindows, BuildWindows32Rel
 					return;
-
+				if (localStorage["build_mac_all"] == "true" && account_id == 2546)
+					return;
+				
                 new_msg = new_msg.replace(/(\n\n)/gm,"\n");
                 var duration_ms = localStorage["duration"]
                   if (duration_ms === null)
