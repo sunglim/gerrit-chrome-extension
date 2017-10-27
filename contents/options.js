@@ -26,7 +26,7 @@ function restore_options() {
   
   var api_endpoint = localStorage["api_endpoint"];
   if (api_endpoint == undefined || api_endpoint == "undefined")
-    localStorage["api_endpoint"] = "https://hdbgerrit.wdf.sap.corp:8443/";
+    localStorage["api_endpoint"] = "https://hdbgerrit.wdf.sap.corp:8443";
   document.getElementById('api_endpoint').value = localStorage["api_endpoint"];
 
   document.getElementById("duration").value = localStorage["duration"];
