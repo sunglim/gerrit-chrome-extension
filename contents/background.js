@@ -113,7 +113,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
               if (result.length == 1) {
                 if (localStorage["checkbot"] == "true" && account_id == 2254) // Checkbot
                   return;
-                if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076 || account_id == 1203 || account_id == 2813 || account_id == 3074 || account_id == 3073))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy, BuildLinuxRel, Linux32Rel, BuildLinuxSP3GCC48Happy
+                if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076 || account_id == 1203 || account_id == 2813 || account_id == 3074 || account_id == 3073 || account_id == 3921))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy, BuildLinuxRel, Linux32Rel, BuildLinuxSP3GCC48Happy
                   return;
                 if (localStorage["build_sun_all"] == "true" && (account_id == 3689 || account_id == 3691))  // Sun64Rel
                   return;
