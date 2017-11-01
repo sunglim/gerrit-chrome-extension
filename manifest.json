@@ -3,7 +3,7 @@
 
   "name": "Gerritimium",
   "description": "Gerrit monitoring",
-  "version": "2.6",
+  "version": "2.7",
 
   "permissions": [
     "alarms",
