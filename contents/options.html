@@ -5,14 +5,13 @@
 </head>
 <body>
   <div class="setting">
-    api_endpoint:
+    * api_endpoint:
     <textarea id="api_endpoint" width="400px"></textarea>
-    <br>
-    Sets the period of time the notification remains visible.<br>
-	Duration(sec): <input id="duration" />
-    
-    <div id="status">&nbsp;</div>
+    <p>
 
+    * Sets the period of time the notification remains visible.<br>
+	Duration(sec): <input id="duration" /><br/>
+    Remain visible: <input id="remain_visible" type="checkbox">
 	<fieldset>
 	  <legend>Notification filter:</legend>
 	  Do not show notification popup for the users down below<br>
@@ -25,6 +24,8 @@
 	  <input type="checkbox" id="trex_service">TrexService<br>
 	  <input type="checkbox" id="merge_summary">MergeSummary<br>
 	</fieldset>
+	<div id="status">&nbsp;</div>
+
     <div class="buttons">
       <button id="save">Save</button>
     </div>

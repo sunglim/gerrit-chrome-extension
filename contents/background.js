@@ -127,7 +127,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
                   if (duration_ms === null)
                     duration_ms = 3;
                 duration_ms = duration_ms * 1000;
-                chrome.notifications.create(result[0]._number.toString(), {title: result[0].subject, iconUrl: './images/icon.png', message: new_msg, type:  'basic', eventTime: Date.now() + duration_ms});
+				var require_interaction =
+    				localStorage["remain_visible"] === undefined ? false : localStorage["remain_visible"] == "true";
+                chrome.notifications.create(result[0]._number.toString(), {title: result[0].subject, iconUrl: './images/icon.png', message: new_msg, type:  'basic', eventTime: Date.now() + duration_ms, requireInteraction: require_interaction});
               }
             }, function(e) {
               console.log("failed to fetch changes:", e.message);

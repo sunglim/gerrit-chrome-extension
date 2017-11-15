@@ -11,7 +11,7 @@ function save_options() {
     localStorage["checkbot"] = document.getElementById("checkbot").checked;
     localStorage["trex_service"] = document.getElementById("trex_service").checked;
     localStorage["merge_summary"] = document.getElementById("merge_summary").checked;
-
+	localStorage["remain_visible"] = document.getElementById("remain_visible").checked;
     chrome.runtime.reload();
   } catch (e) {
   }
@@ -66,6 +66,10 @@ function restore_options() {
   var merge_summary = localStorage["merge_summary"];
   if (merge_summary === undefined)
     localStorage["merge_summary"] = true;
+  
+  var remain_visible = localStorage["remain_visible"];
+  if (remain_visible === undefined)
+    localStorage["remain_visible"] = false;
 
   document.getElementById("user_automatic_performance").checked = localStorage["user_automatic_perforamnce"] == "true";
   document.getElementById("build_linux_all").checked = localStorage["build_linux_all"] == "true";
@@ -75,6 +79,7 @@ function restore_options() {
   document.getElementById("checkbot").checked = localStorage["checkbot"] == "true";
   document.getElementById("trex_service").checked = localStorage["trex_service"] == "true";
   document.getElementById("merge_summary").checked = localStorage["merge_summary"] == "true";
+  document.getElementById("remain_visible").checked = localStorage["remain_visible"] == "true";
 }
 
 document.addEventListener('DOMContentLoaded', restore_options);
