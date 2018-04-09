@@ -111,10 +111,10 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
           gerrit_instance.getChangeList(item.toString())
             .then(function(result) {
               if (result.length == 1) {
-				// TODO(sungguk): Write account map<AccountId, AccountName>.
+                // TODO(sungguk): Write account map<AccountId, AccountName>.
                 if (localStorage["checkbot"] == "true" && account_id == 2254) // Checkbot
                   return;
-                if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076 || account_id == 1203 || account_id == 2813 || account_id == 3074 || account_id == 3073 || account_id == 3921 ||  account_id == 3685 || account_id == 3072 || account_id == 4472))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy, BuildLinuxRel, Linux32Rel, BuildLinuxSP3GCC48Happy
+                if (localStorage["build_linux_all"] == "true" && (account_id == 3505 || account_id == 4470 || account_id == 3000 || account_id == 4479 || account_id == 4480 || account_id == 4471 || account_id == 4481 || account_id == 3311 || account_id == 3076 || account_id == 1203 || account_id == 2813 || account_id == 3074 || account_id == 3073 || account_id == 3921 ||  account_id == 3685 || account_id == 3072 || account_id == 4472 || account_id == 5331 || account_id == 5332 || account_id == 5333 || account_id == 5334 || account_id == 5335))  // BuildLinuxGcc5Happy, BuildLinuxGcc5Happy, BuildLInuxClangAddrSanHappy, BuildLinuxRel, Linux32Rel, BuildLinuxSP3GCC48Happy
                   return;
                 if (localStorage["build_sun_all"] == "true" && (account_id == 3689 || account_id == 3691))  // Sun64Rel
                   return;
